@@ -38,6 +38,7 @@ def update_q(robot: RobotWrapper, q: list, frame_id: int, use_jlog: bool = False
 
     if use_jlog:
         Jlog = pin.Jlog6(pin.SE3(np.linalg.inv(T_world_target) @ T_world_effector))
+        print(J - Jlog @ J)
         J = Jlog @ J
 
     delta = np.linalg.pinv(J) @ np.array(error)
